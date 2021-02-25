@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/Pages/Home.module.css';
 
+import { CountdownProvider } from '../contexts/CountdownContext';
 import ExperienceBar from "../components/ExperienceBar";
 import Profile from '../components/Profile';
 import CompletedChallenges from '../components/CompletedChallenges';
@@ -16,17 +17,19 @@ export default function Home() {
       </Head>
 
       <ExperienceBar />
-
-      <section>
-        <div>
-          <Profile />
-          <CompletedChallenges />
-          <Countdown />
-        </div>
-        <div>
-          <ChallengeBox />
-        </div>
-      </section>
+      
+      <CountdownProvider>
+        <section>
+          <div>
+            <Profile />
+            <CompletedChallenges />
+            <Countdown />
+          </div>
+          <div>
+            <ChallengeBox />
+          </div>
+        </section>
+      </CountdownProvider>
     </div>
   )
 }
