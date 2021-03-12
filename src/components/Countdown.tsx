@@ -4,6 +4,7 @@ import styles from '../styles/components/Countdown.module.css';
 
 const Countdown = () => {
   const { 
+    time,
     minutes, 
     seconds, 
     isActive, 
@@ -11,6 +12,8 @@ const Countdown = () => {
     resetCoutdown, 
     startCountdown 
   } = useContext(CountdownContext);
+
+  const currentTime = Math.round(time / 15);
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondsLeft, secondsRight] = String(seconds).padStart(2, '0').split('');
@@ -46,6 +49,10 @@ const Countdown = () => {
               onClick={resetCoutdown}
             >
               Abandonar ciclo
+              <div 
+                className={styles.borderButton} 
+                style={{ width: `${currentTime}%` }} 
+              />
             </button>
           ) : (
             <button 

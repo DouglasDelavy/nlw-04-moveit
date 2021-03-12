@@ -6,6 +6,7 @@ interface CountdownContextData {
   seconds: number;
   isActive: boolean;
   hasFinished: boolean;
+  time: number;
   startCountdown: () => void;
   resetCoutdown: () => void;
 };
@@ -20,7 +21,7 @@ export const CountdownContext = createContext({} as CountdownContextData);
 export function CountdownProvider({ children }: CountdownProviderProps) {
   const { startNewChallenge } = useContext(ChallengesContext);
 
-  const [time, setTime] = useState(25  * 60);
+  const [time, setTime] = useState(25 * 60);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, sethHasFinished] = useState(false);
 
@@ -53,6 +54,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
   return (
     <CountdownContext.Provider 
       value={{
+        time,
         minutes,
         seconds,
         isActive,
